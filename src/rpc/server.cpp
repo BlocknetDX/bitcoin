@@ -211,7 +211,13 @@ std::string CRPCTable::help(const std::string& strCommand, const JSONRPCRequest&
                     if (!category.empty())
                         strRet += "\n";
                     category = pcmd->category;
-                    strRet += "== " + Capitalize(category) + " ==\n";
+                    if (category == "xbridge" || category == "xrouter") { // uppercase first two letters
+                        string firstLetter = category.substr(0, 2);
+                        boost::to_upper(firstLetter);
+                        strRet += "== " + firstLetter + category.substr(2) + " ==\n";
+                    } else {
+                        strRet += "== " + Capitalize(category) + " ==\n";
+                    }
                 }
             }
             strRet += strHelp + "\n";
