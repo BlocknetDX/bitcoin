@@ -324,9 +324,7 @@ UniValue dxGetOrders(const JSONRPCRequest& request)
         xbridge::WalletConnectorPtr connFrom = xapp.connectorByCurrency(tr->fromCurrency);
         xbridge::WalletConnectorPtr connTo   = xapp.connectorByCurrency(tr->toCurrency);
         if (!connFrom || !connTo) {
-
             continue;
-
         }
 
         Object jtr;
@@ -367,6 +365,8 @@ UniValue dxGetOrderFills(const JSONRPCRequest& request)
                 RPCExamples{
                     HelpExampleCli("dxGetOrderFills", "BLOCK LTC")
                   + HelpExampleRpc("dxGetOrderFills", "BLOCK LTC")
+                  + HelpExampleCli("dxGetOrderFills", "BLOCK LTC true")
+                  + HelpExampleRpc("dxGetOrderFills", "BLOCK LTC true")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -442,8 +442,10 @@ UniValue dxGetOrderHistory(const JSONRPCRequest& request)
                 "\n"
                 },
                 RPCExamples{
-                    HelpExampleCli("dxGetOrderHistory", "SYS LTC 1540660180 1540660420 60 true")
-                  + HelpExampleRpc("dxGetOrderHistory", "SYS LTC 1540660180 1540660420 60 true")
+                    HelpExampleCli("dxGetOrderHistory", "SYS LTC 1540660180 1540660420 60")
+                  + HelpExampleRpc("dxGetOrderHistory", "SYS LTC 1540660180 1540660420 60")
+                  + HelpExampleCli("dxGetOrderHistory", "SYS LTC 1540660180 1540660420 60 true false 18000")
+                  + HelpExampleRpc("dxGetOrderHistory", "SYS LTC 1540660180 1540660420 60 true false 18000")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -523,8 +525,8 @@ UniValue dxGetOrder(const JSONRPCRequest& request)
                 "\n"
                 },
                 RPCExamples{
-                    HelpExampleCli("dxGetOrder", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092")
-                  + HelpExampleRpc("dxGetOrder", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092")
+                    HelpExampleCli("dxGetOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5")
+                  + HelpExampleRpc("dxGetOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -593,6 +595,8 @@ UniValue dxMakeOrder(const JSONRPCRequest& request)
                 RPCExamples{
                     HelpExampleCli("dxMakeOrder", "LTC 25 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BLOCK 1000 BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR exact")
                   + HelpExampleRpc("dxMakeOrder", "LTC 25 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BLOCK 1000 BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR exact")
+                  + HelpExampleCli("dxMakeOrder", "LTC 25 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BLOCK 1000 BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR exact true")
+                  + HelpExampleRpc("dxMakeOrder", "LTC 25 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BLOCK 1000 BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR exact true")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -780,8 +784,10 @@ UniValue dxTakeOrder(const JSONRPCRequest& request)
                 "\n"
                 },
                 RPCExamples{
-                    HelpExampleCli("dxTakeOrder", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR")
-                  + HelpExampleRpc("dxTakeOrder", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR")
+                    HelpExampleCli("dxTakeOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR")
+                  + HelpExampleRpc("dxTakeOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR")
+                  + HelpExampleCli("dxTakeOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR true")
+                  + HelpExampleRpc("dxTakeOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5 LLZ1pgb6Jqx8hu84fcr5WC5HMoKRUsRE8H BWQrvmuHB4C68KH5V7fcn9bFtWN8y5hBmR true")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -921,8 +927,8 @@ UniValue dxCancelOrder(const JSONRPCRequest& request)
                 "\n"
                 },
                 RPCExamples{
-                    HelpExampleCli("dxCancelOrder", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092")
-                  + HelpExampleRpc("dxCancelOrder", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092")
+                    HelpExampleCli("dxCancelOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5")
+                  + HelpExampleRpc("dxCancelOrder", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -986,16 +992,18 @@ UniValue dxFlushCancelledOrders(const JSONRPCRequest& request)
         throw std::runtime_error(
             RPCHelpMan{"dxFlushCancelledOrders",
                 "\n(ageMillis)\n"
-                "Flush cancelled orders older than ageMillis.\n",
+                "This call flushes your cancelled orders that are older than [ageMillis].\n",
                 {
-                    {"ageMillis", RPCArg::Type::NUM, RPCArg::Optional::NO, ""},
+                    {"ageMillis", RPCArg::Type::NUM, "0", "Remove cancelled orders older than this amount of milliseconds."},
                 },
                 RPCResult{
                 "\n"
                 },
                 RPCExamples{
-                    HelpExampleCli("dxFlushCancelledOrders", "1568921382306")
-                  + HelpExampleRpc("dxFlushCancelledOrders", "1568921382306")
+                    HelpExampleCli("dxFlushCancelledOrders", "")
+                  + HelpExampleRpc("dxFlushCancelledOrders", "")
+                  + HelpExampleCli("dxFlushCancelledOrders", "600000")
+                  + HelpExampleRpc("dxFlushCancelledOrders", "600000")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -1007,7 +1015,7 @@ UniValue dxFlushCancelledOrders(const JSONRPCRequest& request)
     if (ageMillis < 0)
     {
         return uret(xbridge::makeError(xbridge::INVALID_PARAMETERS, __FUNCTION__,
-                               "(ageMillis)"));
+                               "ageMillis must be an integer >= 0"));
     }
 
     const auto minAge = boost::posix_time::millisec{ageMillis};
@@ -1059,6 +1067,8 @@ UniValue dxGetOrderBook(const JSONRPCRequest& request)
                 RPCExamples{
                     HelpExampleCli("dxGetOrderBook", "3 BLOCK LTC")
                   + HelpExampleRpc("dxGetOrderBook", "3 BLOCK LTC")
+                  + HelpExampleCli("dxGetOrderBook", "3 BLOCK LTC 60")
+                  + HelpExampleRpc("dxGetOrderBook", "3 BLOCK LTC 60")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -1658,9 +1668,7 @@ UniValue dxGetTokenBalances(const JSONRPCRequest& request)
     if (params.size() != 0)
     {
         Object error;
-        error.emplace_back(Pair("error",
-                                            xbridge::xbridgeErrorText(xbridge::INVALID_PARAMETERS,
-                                                                      "This function does not accept any parameters.")));
+        error.emplace_back(Pair("error",    xbridge::xbridgeErrorText(xbridge::INVALID_PARAMETERS, "This function does not accept any parameters.")));
         error.emplace_back(Pair("code",     xbridge::INVALID_PARAMETERS));
         error.emplace_back(Pair("name",     __FUNCTION__));
         return uret(error);
@@ -1700,8 +1708,10 @@ UniValue dxGetLockedUtxos(const JSONRPCRequest& request)
                 "\n"
                 },
                 RPCExamples{
-                    HelpExampleCli("dxGetLockedUtxos", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092")
-                  + HelpExampleRpc("dxGetLockedUtxos", "2cd2a2ac-e6ff-4beb-9b45-d460bf83a092")
+                    HelpExampleCli("dxGetLockedUtxos", "")
+                  + HelpExampleRpc("dxGetLockedUtxos", "")
+                  + HelpExampleCli("dxGetLockedUtxos", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5")
+                  + HelpExampleRpc("dxGetLockedUtxos", "aae6d7aedaed54ade57da4eda3e5d4a7de8a67d8e7a8d768ea567da5e467d4ea7a6d7a6d7a6d75a7d5a757da5")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
@@ -1785,7 +1795,7 @@ UniValue gettradingdata(const JSONRPCRequest& request)
                 "pulled from on-chain history so pulling a large amount of blocks will\n"
                 "result in longer response times.\n",
                 {
-                    {"blocks", RPCArg::Type::NUM, "43200", "Number of blocks to return trade records for (60s block time)."},
+                    {"blocks", RPCArg::Type::NUM, "43200", "The number of blocks to return trade records for (60s block time)."},
                     // {"errors", RPCArg::Type::BOOL, "false", "show errors"}, // this parameter currently does not work
                 },
                 RPCResult{
@@ -1803,6 +1813,8 @@ UniValue gettradingdata(const JSONRPCRequest& request)
                 RPCExamples{
                     HelpExampleCli("gettradingdata", "")
                   + HelpExampleRpc("gettradingdata", "")
+                  + HelpExampleCli("gettradingdata", "86400")
+                  + HelpExampleRpc("gettradingdata", "86400")
                 },
             }.ToString());
     Value js; json_spirit::read_string(request.params.write(), js); Array params = js.get_array();
